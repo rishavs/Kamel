@@ -1,0 +1,18 @@
+name: Kamel
+version: 0.1.0
+
+authors:
+  - Rishav Sharan <rishav.sharan@gmail.com>
+
+targets:
+  Kamel:
+    main: src/Kamel.cr
+
+dependencies:
+  kemal:
+    github: kemalcr/kemal
+    branch: master
+    
+crystal: 0.20.5
+
+license: MIT
