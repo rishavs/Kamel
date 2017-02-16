@@ -1,5 +1,13 @@
 version: 1.0
 shards:
+  db:
+    github: crystal-lang/crystal-db
+    version: 0.3.3
+
+  faker:
+    github: askn/faker
+    version: 0.2.0
+
   kemal:
     github: kemalcr/kemal
     commit: 54e501e964ceb5053f16fd3061c005dd875b5f9e
@@ -11,6 +19,10 @@ shards:
   multipart:
     github: RX14/multipart.cr
     version: 0.1.2
+
+  pg:
+    github: will/crystal-pg
+    version: 0.13.1
 
   radix:
     github: luislavena/radix

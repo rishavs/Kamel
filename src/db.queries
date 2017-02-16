@@ -1,0 +1,18 @@
+CREATE TABLE posts(
+    id serial primary key,
+    title character varying(255),
+    is_link boolean default true,
+    link character varying(255),
+    content text,
+    author_username character varying(255),
+    is_viewable boolean default false,
+    is_approved boolean default false,
+    is_deleted boolean default false,
+    created_at timestamp,
+    updated_at timestamp,
+    last_read_at timestamp
+);
+
+INSERT INTO posts (title, is_link, content, date_prod, kind) VALUES
+    ('B6717', 'Tampopo', 110, '1985-02-10', 'Comedy'),
+    ('HG120', 'The Dinner Game', 140, DEFAULT, 'Comedy');
