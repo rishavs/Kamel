@@ -1,0 +1,7 @@
+DB:
+    dev:
+        host: localhost
+        database: Kamel_dev
+        username: user
+        password: p@ssw0rd
+        pool: 3
