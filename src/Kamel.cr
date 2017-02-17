@@ -52,7 +52,7 @@ end
 #----------------------
 get "/:name" do |env|
   	name = env.params.url["name"]
-  	render "src/web/views/hello.ecr", "src/web/layouts/layout.ecr"
+  	render "src/Kamel/views/hello.ecr", "src/Kamel/views/layouts/base.ecr"
 end
 
 #----------------------
