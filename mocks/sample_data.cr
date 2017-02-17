@@ -1,7 +1,7 @@
 require "pg"
 
 DB_NAME = "Kamel"
-PG_PATH = "postgres://postgres:postgres@db:5432"
+PG_PATH = "postgres://wguyczml:Z1CKsVDby2pp154JcMm_eSnev6v_ayFR@fizzy-cherry.db.elephantsql.com:5432/wguyczml"
 
 # Creates connection with the default postgres db
 conn = PG.connect("#{PG_PATH}/postgres")
