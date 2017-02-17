@@ -1,18 +1,13 @@
-# module Kamel
-	# Read Config
+module Kamel
+
+	puts "Setting up the app"
+
+	puts "Reading env config"
+
+	puts "Initializing Database"
 
 
 
 
-	# Read sugar
 
-
-
-	# Init Db
-
-
-
-
-# end
-
-puts "testing this shit"
+end

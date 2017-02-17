@@ -21,3 +21,5 @@ dependencies:
         github: will/crystal-pg
     faker:
         github: askn/faker
+    dotenv:
+        github: gdotdesign/cr-dotenv
