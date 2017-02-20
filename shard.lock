@@ -1,5 +1,9 @@
 version: 1.0
 shards:
+  crecto:
+    github: fridgerator/crecto
+    version: 0.3.4
+
   db:
     github: crystal-lang/crystal-db
     version: 0.3.3
@@ -14,7 +18,7 @@ shards:
 
   kemal:
     github: kemalcr/kemal
-    commit: 54e501e964ceb5053f16fd3061c005dd875b5f9e
+    version: 0.18.0
 
   kilt:
     github: jeromegn/kilt

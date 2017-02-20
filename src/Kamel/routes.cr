@@ -1,21 +1,17 @@
 module Kamel
 
-	before_get "/posts" do |env|
-		DB.open "postgres://wguyczml:Z1CKsVDby2pp154JcMm_eSnev6v_ayFR@fizzy-cherry.db.elephantsql.com:5432/wguyczml" do |db|
-			db.query "select title, content from posts" do |result|
-			    result.each do
-				    title = result.read(String)
-				    content = result.read(String)
-				    puts "#{title}" 
-				    puts "#{content}"
-				end
-			end
-		end
-	end
-
-	get "/posts" do 
+	get "/p/:id" do 
 		#{title}
 		#{content}
+	end
+
+	get "/p/new" do |env|
+	  	render "src/Kamel/views/new_post.ecr", "src/Kamel/views/layouts/base.ecr"
+	end
+
+	post "/p/create" do |env|
+ 		field = env.params.body["post_title"]
+ 		puts field
 	end
 
 	#----------------------
