@@ -12,8 +12,6 @@ module Kamel
 	# Setup Kamel
 	Dotenv.load!
 
-	puts ENV["password"]
-	
 	# Run Kamel
 	Kemal.run
 

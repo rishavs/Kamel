@@ -1,0 +1,11 @@
+<% if dataset %>
+	<div class="ui divided list">
+		<% dataset.each do |i| %>
+			<div class="item">
+			    <div class="content">
+			      	<p class="header"> <%= i.title %> </p>
+			    </div>
+		    </div>
+		<% end %>
+	</div>
+<% end %>

@@ -19,6 +19,16 @@ module Kamel
     	validate_required [:title]
     end
 
+    get "/p/index" do |env|
+		query = Crecto::Repo::Query
+		  	.order_by("posts.id DESC")
+
+		dataset = Crecto::Repo.all(Post, query)
+		dataset.as(Array)
+
+	  	render "src/Kamel/views/posts/index_posts.ecr", "src/Kamel/views/base.ecr"
+	end
+
 	get "/p/:id" do |env|
 	  	id = env.params.url["id"]
 	  	data = Crecto::Repo.get(Post, id)
@@ -29,7 +39,7 @@ module Kamel
 	  	render "src/Kamel/views/posts/new_post.ecr", "src/Kamel/views/base.ecr"
 	end
 
-	post "/p/create" do |env|
+	post "/p/new/creating" do |env|
 		data = Post.new
 
  		data.title = env.params.body["post_title"]
