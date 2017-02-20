@@ -5,46 +5,50 @@ module Kamel
     class Post < Crecto::Model
 
       	schema "posts" do
-            field :title, 		String,
-            # field :is_link, 	Bool,
-            # field :link, 		String,
-            field :content,		String,
-            # field :author_name,	String,
-            # field :is_viewable, Bool,
-            # field :is_approved, Bool,
-            field :is_deleted,  Bool
+            field :title, 			String
+            field :is_link, 		Bool
+            field :link, 			String
+            field :content,			String
+            field :author_username,	String
+            field :is_viewable, 	Bool
+            field :is_approved, 	Bool
+            field :is_deleted,  	Bool
+            field :last_read_at,	Time
     	end
     	
     	validate_required [:title]
     end
 
-	get "/p/:id" do 
-		#{title}
-		#{content}
-		# TODO
+	get "/p/:id" do |env|
+	  	id = env.params.url["id"]
+	  	data = Crecto::Repo.get(Post, id)
+	  	render "src/Kamel/views/posts/show_post.ecr", "src/Kamel/views/base.ecr"
 	end
 
 	get "/p/new" do 
-	  	render "src/Kamel/views/new_post.ecr", "src/Kamel/views/layouts/base.ecr"
+	  	render "src/Kamel/views/posts/new_post.ecr", "src/Kamel/views/base.ecr"
 	end
 
 	post "/p/create" do |env|
-
-
 		data = Post.new
 
  		data.title = env.params.body["post_title"]
+ 		data.is_link = false
+ 		data.link = nil
  		data.content = env.params.body["post_content"]
- 		
+ 		data.author_username = "some guy"
+ 		data.is_viewable = true
+ 		data.is_approved = true
+ 		data.is_deleted = false
+ 		data.last_read_at = Time.new(2016, 2, 15, 10, 20, 30)
+
  		changeset = Crecto::Repo.insert(data)
-		puts changeset.valid? # false
-		puts changeset.errors # {:field => "name", :message => "is invalid"}
-		puts changeset.changes # {:name => "123", :age => 123}
+		puts "Changeset is INVALID!" if changeset.valid? == false
+		puts "Changeset errors are: #{changeset.errors }" if !changeset.errors.empty?
 
- 		puts data
- 		puts data.title
+ 		puts "/nThe item was successfully added to the DB with ID:#{changeset.instance.id}/n"
 
- 		puts "jhinga la la"
+	 	env.redirect "/p/#{changeset.instance.id}" 
 	end
 
 
@@ -84,12 +88,6 @@ module Kamel
 
 	error 403 do
 	    "Access Forbidden!"
-	end
-
-
-	get "/:name" do |env|
-	  	name = env.params.url["name"]
-	  	render "src/Kamel/views/hello.ecr", "src/Kamel/views/layouts/base.ecr"
 	end
 
 	get "/" do
