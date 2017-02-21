@@ -1,4 +1,4 @@
-Class PostController do	
+class PostController do	
 
 
     # def index(conn, _params) do

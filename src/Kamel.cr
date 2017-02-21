@@ -6,6 +6,7 @@ require "dotenv"
 require "crecto"
 
 require "./Kamel/models/*"
+require "./Kamel/controllers/*"
 
 
 require "./Kamel/*"
