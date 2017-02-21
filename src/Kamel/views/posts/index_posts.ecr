@@ -1,11 +1,18 @@
+<button class="ui primary button" name="new_post_btn" onclick="location.href='/p/new';"> Add New </button>
+
 <% if dataset %>
 	<div class="ui divided list">
 		<% dataset.each do |i| %>
 			<div class="item">
 			    <div class="content">
-			      	<p class="header"> <%= i.title %> </p>
+			    <a href="/p/<%= i.id %>">
+			    	<%= i.id %>)    <%= i.title %> 
+			    </a>			       	
 			    </div>
 		    </div>
 		<% end %>
 	</div>
+<% else %>
+	<h2> No Items Found! </h2>
 <% end %>
+

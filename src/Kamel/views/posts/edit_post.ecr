@@ -1,0 +1,12 @@
+<form class="ui form" method="patch" action="/p/<%= data.id %>/edit">
+    <div class="field">
+        <label>Title</label>
+        <input type="text" name="post_title" placeholder="Post Title" value="<%= data.title %>">
+    </div>
+    <div class="field">
+        <label>Content</label>
+        <textarea name="post_content" placeholder="Post Content"><%= data.content %></textarea>
+    </div>
+    <button class="ui primary button" type="submit">Submit</button>
+    <button class="ui grey basic button" onclick="location.href='/p/index';">Cancel</button>
+</form>

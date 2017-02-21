@@ -1,7 +1,10 @@
-
 <% if data %>
 	<div class="ui very padded text container segment">
 	    <h2 class="ui header"> <%= data.title %> </h2>
 		<p> <%= data.content %> </p>
+		<br/>
+
+		<button class="ui primary button" name="edit_post_btn" onclick="location.href='/p/<%= data.id %>/edit';"> Edit </button>
+		<button class="ui negative basic button" name="del_post_btn" onclick="location.href='/p/index';">Delete</button>
 	</div>
 <% end %>
