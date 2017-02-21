@@ -5,6 +5,11 @@
 		<br/>
 
 		<button class="ui primary button" name="edit_post_btn" onclick="location.href='/p/<%= data.id %>/edit';"> Edit </button>
-		<button class="ui negative basic button" name="del_post_btn" onclick="location.href='/p/index';">Delete</button>
+		<!-- <button class="ui negative basic button" name="del_post_btn" onclick="location.href='/p/index';">Delete</button> -->
+	    <form name = "del_post_form" method="post" action="/p/<%= data.id %>" onsubmit="return confirm('Do you really want to delete the post?');">
+	    	<input type="hidden" name="_method" value="delete"/>
+		  	<button class="ui negative basic button" role="submit">Delete</button>
+	    </form>
+
 	</div>
 <% end %>
