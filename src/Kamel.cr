@@ -5,12 +5,12 @@ require "pg"
 require "dotenv"
 require "crecto"
 
+require "./Kamel/models/*"
+
+
 require "./Kamel/*"
 
 module Kamel
-
-	# Setup Kamel
-	Dotenv.load!
 
 	# Run Kamel
 	Kemal.run
