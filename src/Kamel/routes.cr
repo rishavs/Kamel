@@ -1,12 +1,7 @@
-module Kamel
+module Routes
 
-    get "/p/index" do |env|
-		query = Crecto::Repo::Query
-		  	.order_by("posts.id DESC")
-
-		dataset = Crecto::Repo.all(Post, query)
-		dataset.as(Array)
-
+    get "/p/index" do
+		PostController.index_items
 	  	render "src/Kamel/views/posts/index_posts.ecr", "src/Kamel/views/base.ecr"
 	end
 
@@ -15,67 +10,26 @@ module Kamel
 	end
 
 	post "/p/new" do |env|
-		data = Post.new
-
- 		data.title = env.params.body["post_title"]
- 		data.is_link = false
- 		data.link = nil
- 		data.content = env.params.body["post_content"]
- 		data.author_username = "some guy"
- 		data.is_viewable = true
- 		data.is_approved = true
- 		data.is_deleted = false
- 		data.last_read_at = Time.new(2016, 2, 15, 10, 20, 30)
-
- 		changeset = Crecto::Repo.insert(data)
-		puts "Changeset is INVALID!" if changeset.valid? == false
-		puts "Changeset errors are: #{changeset.errors }" if !changeset.errors.empty?
-
- 		puts "/nThe item was successfully added to the DB with ID:#{changeset.instance.id}/n"
-
-	 	# env.redirect "/p/#{changeset.instance.id}" 
+		PostController.save_new_item(env)
 	 	env.redirect "/p/index" 
 	end
 
 	get "/p/:id" do |env|
-	  	id = env.params.url["id"]
-	  	data = Crecto::Repo.get(Post, id)
-
 	  	render "src/Kamel/views/posts/show_post.ecr", "src/Kamel/views/base.ecr"
 	end
 
 	get "/p/:id/edit" do |env|
-	  	id = env.params.url["id"]
-	  	data = Crecto::Repo.get(Post, id)
-
+		PostController.edit_an_item(env)
 	  	render "src/Kamel/views/posts/edit_post.ecr", "src/Kamel/views/base.ecr"
 	end	
 
 	patch "/p/:id" do |env|
-	  	id = env.params.url["id"]
-	  	data = Crecto::Repo.get(Post, id)
-
-		if data
- 
-	 		data.title = env.params.body["post_title"]
-	 		data.content = env.params.body["post_content"]
-
-	 		changeset = Crecto::Repo.update(data)
-			puts "Changeset is INVALID!" if changeset.valid? == false
-			puts "Changeset errors are: #{changeset.errors }" if !changeset.errors.empty?
-	 		puts "/nThe item was successfully UPDATED. ID:#{changeset.instance.id}/n"
-
-		 	env.redirect "/p/#{changeset.instance.id}" 
-	 	end
+		PostController.save_edited_item(env)
+	 	env.redirect "/p/#{changeset.instance.id}" 
 	end
 
-
 	delete "/p/:id" do |env|
-	  	id = env.params.url["id"]
-		query = Crecto::Repo::Query
-			.where(id: id)
-
-		Crecto::Repo.delete_all(Post, query)
+		PostController.delete_an_item(env)
 	 	env.redirect "/p/index" 
 	end	
 
@@ -85,18 +39,6 @@ module Kamel
 
 
 	#---------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
 
 	# Redirect browser
 	get "/foo" do |env|

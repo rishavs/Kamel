@@ -1,4 +1,4 @@
-module Kamel
+module Models
 
     class Post < Crecto::Model
 
