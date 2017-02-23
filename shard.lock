@@ -10,11 +10,11 @@ shards:
 
   dotenv:
     github: gdotdesign/cr-dotenv
-    commit: 5f1be9567a0424ada1b07749112db5ff423ce7fe
+    commit: 128b50cd440d9302bcdaece6bd4f3731b5c102a0
 
   faker:
     github: askn/faker
-    version: 0.2.0
+    version: 0.3.0
 
   kemal:
     github: kemalcr/kemal
