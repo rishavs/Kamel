@@ -1,34 +1,29 @@
-get "/p/index" do |env|
-	index_items(env)
-  	render "src/Kamel/views/posts/index_posts.ecr", "src/Kamel/views/base.ecr"
+get "/p/index" do 
+	index_items 
 end
 
-get "/p/new" do |env|
-  	render "src/Kamel/views/posts/new_post.ecr", "src/Kamel/views/base.ecr"
+get "/p/new" do 
+	add_new_item 
 end
-
+  	
 post "/p/new" do |env|
 	save_new_item(env)
- 	env.redirect "/p/index" 
 end
 
 get "/p/:id" do |env|
-  	render "src/Kamel/views/posts/show_post.ecr", "src/Kamel/views/base.ecr"
+	show_an_item(env)
 end
 
 get "/p/:id/edit" do |env|
 	edit_an_item(env)
-  	render "src/Kamel/views/posts/edit_post.ecr", "src/Kamel/views/base.ecr"
 end	
 
 patch "/p/:id" do |env|
 	save_edited_item(env)
- 	env.redirect "/p/#{changeset.instance.id}" 
 end
 
 delete "/p/:id" do |env|
 	delete_an_item(env)
- 	env.redirect "/p/index" 
 end	
 
 

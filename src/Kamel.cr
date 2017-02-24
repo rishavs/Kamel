@@ -11,9 +11,9 @@ require "./Kamel/*"
 
 
 	
-# Dotenv.load
+Dotenv.load
 	
-	# Run Kamel
+# Run Kamel
 Kemal.run
 
 
